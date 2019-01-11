@@ -21,10 +21,28 @@ export default class index extends Component {
   componentDidMount() {}
   startCamera = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-        this.video.srcObject = stream;
-        this.video.play();
-      });
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(stream => {
+          this.video.srcObject = stream;
+          var playPromise = this.video.play();
+
+          if (playPromise !== undefined) {
+            playPromise
+              .then(_ => {
+                // Automatic playback started!
+                // Show playing UI.
+              })
+              .catch(error => {
+                // Auto-play was prevented
+                // Show paused UI.
+                console.log(error);
+              });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   };
   stopCamera = () => {
