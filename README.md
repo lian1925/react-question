@@ -1,6 +1,6 @@
-# react-camera
+# react-question
 
-reactJs 基础项目，实现 camera 拍照与图片保存功能
+记录工作，生活中，与朋友讨论一些有趣的编程问题，及相关思路
 
 ## Build
 
@@ -19,9 +19,4 @@ Go to http://localhost:3000 in your browser
 
 ## 参考资料
 
-[DOMException: The play() request was interrupted
-](https://developers.google.com/web/updates/2017/06/play-request-was-interrupted)
-
 ## You will get
-
-![](/docs/demo.png)
