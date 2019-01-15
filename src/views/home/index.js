@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import "./index.less";
 import { Button, message } from "antd";
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import collection from "@/views/1-collection";
+
+import part from "@/views/2-part";
+import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
 export default class index extends Component {
   constructor(props) {
     super(props);
@@ -51,42 +54,28 @@ export default class index extends Component {
     message.success("停止成功");
   };
   render() {
+    const note = (
+      <div className="note">
+        <h2>备注</h2>
+        <p>记录工作，生活中，与朋友讨论一些有趣的编程问题，及相关思路</p>
+      </div>
+    );
     return (
       <div className="home-container">
-        <h2>ReactJs摄像头操控 demo</h2>
-        <div className="link">
-          <Link to="/">home</Link>
+        <div className="header">
+          <h2>编程问题集锦 demo</h2>
+          <div className="link">
+            <Link to="/">home</Link>
+            <Link to="/1-collection">1-求解集合的子集</Link>
+            <Link to="/2-part">2-集合的划分</Link>
+          </div>
         </div>
-        <div className="content">
-          <h2>演示: 基本操作</h2>
-          <span>启动摄像头：</span>
-          <Button type="primary" onClick={this.startCamera}>
-            点击
-          </Button>
-          <span>保存图片：</span>
-          <Button type="primary" onClick={this.savePhoto}>
-            点击
-          </Button>
-          <span>关闭摄像头：</span>
-          <Button type="primary" onClick={this.stopCamera}>
-            点击
-          </Button>
-          <div className="video-container">
-            <video
-              ref={node => (this.video = node)}
-              width="300"
-              height="auto"
-              // src={this.state.videoSrc}
-            />
-          </div>
-          <h2>预览</h2>
-          <div className="canvas-container">
-            <canvas
-              ref={node => (this.canvas = node)}
-              width="300"
-              height="200"
-            />
-          </div>
+        <div>
+          <Switch>
+            <Route path="/1-collection" component={collection} />
+            <Route path="/2-part" component={part} />
+            <Route component={() => note} />
+          </Switch>
         </div>
       </div>
     );
